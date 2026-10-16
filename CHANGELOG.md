@@ -1,5 +1,17 @@
 # PanoBox changelog
 
+## 1.8.0 — 2026-10-17
+
+- Backups are now a single `.zip` archive that includes image files, templates and preferences, with a SHA-256 manifest. They restore into another folder or computer. Restore validates entry names, sizes and checksums first, merges without deleting existing data, never overwrites existing images and removes files it wrote if the restore fails. JSON backups from earlier versions still import.
+- Moving or copying a portable installation no longer breaks image history: references are re-linked to the images in the new `Data\thumbs` folder at startup.
+- New per-app exclusion list (by process name) in settings, with suggestions from sources already in history. It applies to history capture, clipboard undo memory and Explorer imports, independently of password detection.
+- Explorer "copy to PanoBox" actions no longer add to history while capture is paused, or when image storage or password exclusion rules would have skipped the content.
+- History expiry presets (1 hour, 1 day, 7 days, 30 days). New installations keep unpinned history for 30 days; existing settings are unchanged.
+- The palette shows when capture is paused and can pause/resume it; the tray menu shows the active shortcut and asks before clearing history.
+- An unavailable custom shortcut is now reported instead of being replaced silently.
+- Settings counts history in SQLite instead of loading every entry, shows the data folder and explains backup and privacy behavior.
+- CI actions upgraded to Node 24 releases pinned by commit SHA. Private evidence drafts are stored only for `main`/tag pushes or on request, packages are attached only to fully successful runs, and a manual, dry-run-by-default workflow prunes old drafts.
+
 ## 1.7.0 — 2026-10-16
 
 - Hardened backup and text import validation, bounded local file reads and image-file ownership checks.

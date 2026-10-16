@@ -1,12 +1,12 @@
 # PanoBox privacy
 
-Applies to PanoBox 1.7.0. Last updated: 16 October 2026. Publisher: [KLOWZY](https://klowzy.com).
+Applies to PanoBox 1.8.0. Last updated: 17 October 2026. Publisher: [KLOWZY](https://klowzy.com).
 
 ## What the app records
 
 While capture is enabled, PanoBox listens for changes to your Windows clipboard in your current user session. Supported entries include text, images and lists of file paths. History can contain copied content, previews, source process name, timestamps, a content hash, pin status and a local use count used for sorting. Templates and app preferences are also stored. PanoBox does not copy the contents of files merely because their paths appear on the clipboard.
 
-Capture can be paused from the tray. Settings control images, history limits, optional expiry and password exclusion. The default history limit is 200; pinned entries can outlive that limit and automatic expiry. Text capture is limited to 100,000 characters. These limits do not make clipboard storage safe for passwords.
+Capture can be paused from the tray or the palette; the palette shows when capture is paused. Settings control images, history limits, history expiry (off, 1 hour, 1 day, 7 days or 30 days), password exclusion and a list of excluded apps. Content copied from an excluded app (matched by its Windows process name) is never recorded, whether or not password exclusion is on. The default history limit is 200; pinned entries can outlive that limit and automatic expiry. New installations keep unpinned history for 30 days by default; upgrading does not change an existing installation's expiry setting. Text capture is limited to 100,000 characters. These limits do not make clipboard storage safe for passwords.
 
 When password exclusion is enabled, PanoBox checks known password-manager source names and patterns resembling credentials. It also honors supported clipboard opt-out formats. These checks are best-effort heuristics: other apps, unusual passwords, text inside larger documents, manually entered templates and imported records can still contain secrets. Pause capture before handling sensitive content. The app cannot protect you from other software that can read the clipboard or your user files.
 
@@ -36,11 +36,11 @@ Links to `klowzy.com`, GitHub releases, saved websites and email addresses open 
 
 ## Optional Windows integration
 
-Startup and Explorer context-menu integration are optional and off by default. If enabled, PanoBox writes per-user Windows registry entries pointing to its executable. Explorer actions deliberately copy a selected text file's contents or a folder path. These are local actions and do not require administrator access.
+Startup and Explorer context-menu integration are optional and off by default. If enabled, PanoBox writes per-user Windows registry entries pointing to its executable. Explorer actions deliberately copy a selected text file's contents or a folder path. The copy always happens because you asked for it, but adding it to history follows the same rules as clipboard capture: nothing is recorded while capture is paused, images are skipped when image storage is off, and content that looks like a secret is skipped when password exclusion is on. These are local actions and do not require administrator access.
 
 ## Backups, deletion and uninstalling
 
-JSON backups contain history metadata/text, templates and selected preferences in plain text. Text export also contains history text and metadata. **Image binaries are not embedded in JSON backups**; local image references depend on the original data files. Share exports only after inspecting and sanitizing them. Import only backups you trust.
+Backups are `.zip` files containing history text and metadata, the referenced image files, templates and preferences, plus a checksum manifest. They are **not encrypted or password protected**; anyone with the file can read its contents. Text export also contains history text and metadata. Older JSON backups (1.7.0 and earlier) do not contain images. Share backups and exports only after inspecting and sanitizing them. Import only backups you trust: restore checks file names, sizes and checksums before writing, merges into existing data without deleting it, and does not restore startup or Explorer integration or switch off privacy protections that are on.
 
 Deleting an entry removes its database record and its associated app-owned thumbnail where applicable. Clearing unpinned history preserves pinned entries and templates. Generated QR files, logs, separate exports and recovery copies may remain. Deletion is logical removal, not guaranteed secure erasure of SQLite pages, storage media, system backups or Windows clipboard history. PanoBox's clipboard undo state also lives in memory while the app runs.
 

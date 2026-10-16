@@ -8,9 +8,9 @@ Do not attach real clipboard history, `Data`, database files, backups, access to
 
 ## Supported version and boundaries
 
-Use the latest stable release from [KlowzyZ/PanoBox-Releases](https://github.com/KlowzyZ/PanoBox-Releases/releases). Version 1.7.x is the current supported line. Earlier development builds should be replaced. There is no guaranteed response-time commitment.
+Use the latest stable release from [KlowzyZ/PanoBox-Releases](https://github.com/KlowzyZ/PanoBox-Releases/releases). Version 1.8.x is the current supported line. Earlier development builds should be replaced. There is no guaranteed response-time commitment.
 
-PanoBox is a Windows desktop app that intentionally reads and writes the current user's clipboard, stores local history and can simulate a paste action. It is not a secret vault or a defense against malicious software running as the same user. Local history and exports are not encrypted. Password exclusions are heuristics and cannot promise that every secret is rejected. Backups are sensitive input and should come from a trusted source.
+PanoBox is a Windows desktop app that intentionally reads and writes the current user's clipboard, stores local history and can simulate a paste action. It is not a secret vault or a defense against malicious software running as the same user. Local history and exports are not encrypted. Password exclusions are heuristics and cannot promise that every secret is rejected. Backups are sensitive input and should come from a trusted source. Restore accepts only the expected file names inside a backup archive, enforces per-file and total size limits, verifies SHA-256 checksums before writing and never overwrites existing image files.
 
 Run as a normal Windows user. Automatic paste into elevated apps or games may be blocked by Windows; raising PanoBox's privilege level is not required for normal use. Optional startup and Explorer entries are scoped to the current user. The app does not require a network listener or administrator rights.
 

@@ -6,8 +6,8 @@ Keep useful text, images and file paths close at hand. Open the palette with **C
 
 ## Download and run
 
-1. Download `PanoBox-1.7.0-win-x64.zip` and `SHA256SUMS.txt` from [official releases](https://github.com/KlowzyZ/PanoBox-Releases/releases).
-2. In PowerShell, run `Get-FileHash .\PanoBox-1.7.0-win-x64.zip -Algorithm SHA256` and compare the complete hash with `SHA256SUMS.txt`.
+1. Download the latest stable `PanoBox-<version>-win-x64.zip` and `SHA256SUMS.txt` from [official releases](https://github.com/KlowzyZ/PanoBox-Releases/releases).
+2. In PowerShell, run `Get-FileHash .\PanoBox-<version>-win-x64.zip -Algorithm SHA256` and compare the complete hash with `SHA256SUMS.txt`.
 3. Extract the ZIP into a folder you control. Run `PanoBox.exe` as your normal Windows user. Keep the documentation and `licenses` folder together with the app.
 
 The portable package targets **Windows 11 22H2 (build 22621) or later, x64**. It includes the .NET runtime; no separate .NET installation is required. OCR uses an installed Turkish or English Windows recognition language and is unavailable when neither is installed. The executable is currently unsigned; Windows may display a SmartScreen warning. A matching checksum detects a changed download, but is not a code signature.
@@ -18,7 +18,8 @@ The portable package targets **Windows 11 22H2 (build 22621) or later, x64**. It
 - **Templates:** reusable text with variables such as `{tarih}` (date), `{saat}` (time), `{tarihsaat}` (date and time), `{gun}` (day), `{yil}` (year) and `{pano}` (clipboard).
 - **Tools:** local OCR and QR generation, a paste queue, multi-selection, JSON formatting and explicit actions for links, mail and file locations.
 - **Appearance:** system, dark and light themes; adjustable text size and density.
-- **Control:** pause capture from the tray, configure the hotkey, choose optional startup/Explorer integration, or use the manual update check.
+- **Control:** pause capture from the tray or the palette (⏸), configure the hotkey, choose optional startup/Explorer integration, or use the manual update check.
+- **Privacy controls:** choose how long unpinned history is kept (1 hour to 30 days, or until the item limit), and list apps whose copies are never recorded (for example `Teams` or `mstsc`). Settings suggests source apps already seen in history.
 
 | Key | Action |
 | --- | --- |
@@ -37,15 +38,15 @@ Search accepts several words and Turkish-insensitive matching. Filters include `
 
 ## Your clipboard is sensitive
 
-History, templates, settings, thumbnails and generated QR images are stored locally. **They are not encrypted by PanoBox.** Password-manager exclusions, clipboard privacy flags and token heuristics reduce accidental capture but cannot identify every secret. Pause capture before copying sensitive information and review saved history when needed.
+History, templates, settings, thumbnails and generated QR images are stored locally. **They are not encrypted by PanoBox.** Password-manager exclusions, your own app exclusion list, clipboard privacy flags and token heuristics reduce accidental capture but cannot identify every secret. Pause capture before copying sensitive information and review saved history when needed. New installations keep unpinned history for 30 days by default; existing installations keep their current setting.
 
 PanoBox has no account, advertising SDK, analytics SDK or automatic update check. Clicking **Check for updates** contacts GitHub and exposes ordinary connection information such as your IP address and app version. Opening a saved link or the website uses your default browser/application. See [PRIVACY.md](PRIVACY.md) for storage, backup and deletion details.
 
 ## Data, backup and removal
 
-PanoBox prefers a writable `Data` folder beside `PanoBox.exe`; otherwise it uses `%LOCALAPPDATA%\PanoBox`. Exit from the tray before copying data or replacing binaries. Back up the **application folder and its active data folder**, including `%LOCALAPPDATA%\PanoBox` when fallback storage is active. Verify an update in a separate folder, then replace application files in your existing installation while retaining your existing `Data` or fallback data folder. Stored image references can depend on the original absolute folder path, so moving the installation to another path can break old image history. Never replace or remove your only copy of the data when updating.
+PanoBox prefers a writable `Data` folder beside `PanoBox.exe`; otherwise it uses `%LOCALAPPDATA%\PanoBox`. Settings shows the active folder and can open it. Exit from the tray before copying data or replacing binaries. Verify an update in a separate folder, then replace application files in your existing installation while retaining your existing `Data` or fallback data folder. A portable folder can be moved or copied: on the next start PanoBox re-links image history to the images in its own `Data\thumbs` folder without moving or deleting files. Never replace or remove your only copy of the data when updating.
 
-Settings offers **Yedekle…** (JSON backup), **Geri yükle…** (restore), **Metin Olarak Dışa Aktar…** (text export) and **Sabitlenmemişleri temizle** (clear unpinned entries). JSON backups include history metadata/text, templates and selected settings. **Image files are not embedded:** retain the original data folder for image history. Exports are plain text and may contain sensitive information.
+Settings offers **Yedekle…** (backup), **Geri yükle…** (restore), **Metin olarak dışa aktar…** (text export) and **Sabitlenmemiş geçmişi temizle…** (clear unpinned entries). A backup is a single `.zip` file containing history, **image files**, templates and preferences, with a SHA-256 manifest. It can be restored into another folder or computer. Restore validates the whole file first (allowed file names, size limits, checksums), adds only missing entries and never deletes existing history; on failure, images written during the attempt are removed. Startup/Explorer integration is not restored, and a backup cannot switch off privacy protections that are on. Older JSON backups remain importable (without images). Backups and exports are **not encrypted** and contain clipboard content.
 
 To remove PanoBox, disable optional startup and Explorer integration in settings, exit from the tray, then delete the app folder and the active data folder. Deleting history is not secure disk erasure and does not erase your separate backups or Windows clipboard history.
 
