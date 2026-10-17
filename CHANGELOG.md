@@ -1,5 +1,16 @@
 # PanoBox changelog
 
+## 2.0.0 — 2026-10-17
+
+- **English interface** alongside Turkish, chosen in Settings → General (new installations follow the Windows language; existing ones stay Turkish).
+- **Windows installer** (per user, no administrator rights) in addition to the portable ZIP. The installed app keeps data in `%LOCALAPPDATA%\PanoBox`; the uninstaller removes startup/Explorer entries and deletes data only if you confirm.
+- **Optional password-protected backups** (`.pbx`, AES-256-GCM, PBKDF2-SHA256). Unprotected `.zip` and older JSON backups still restore.
+- **Paste as plain text** with a global shortcut (Ctrl+Shift+Alt+V), and pasting file entries as text.
+- **Search:** exact phrases, `-exclusions`, English operators and dates (`type:`, `app:`, `after:yesterday`, `7d`), and relevance ranking.
+- **Templates:** edit existing templates, variable buttons with a live preview, English variable names (`{date}`, `{clipboard}`, …).
+- Redesigned palette and settings: Fluent icons, actions shown on hover, sidebar settings pages (General, Privacy, Templates, Backup, About), first-run guidance, themed title bars and scrollbars.
+- Settings show the actual Windows startup state; backup and restore run without freezing the window.
+
 ## 1.8.0 — 2026-10-17
 
 - Backups are now a single `.zip` archive that includes image files, templates and preferences, with a SHA-256 manifest. They restore into another folder or computer. Restore validates entry names, sizes and checksums first, merges without deleting existing data, never overwrites existing images and removes files it wrote if the restore fails. JSON backups from earlier versions still import.
