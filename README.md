@@ -6,7 +6,7 @@ Keep useful text, images and file paths close at hand. Open the palette with **C
 
 ## Download and install
 
-Download from [official releases](https://github.com/KlowzyZ/PanoBox-Releases/releases), together with `SHA256SUMS.txt`. Before running a file, compare its hash in PowerShell: `Get-FileHash .\<file> -Algorithm SHA256`.
+Download from the **Releases** tab on this repository, together with `SHA256SUMS.txt`. Before running a file, compare its hash in PowerShell: `Get-FileHash .\<file> -Algorithm SHA256`.
 
 - **Installer** — `PanoBox-<version>-win-x64-Setup.exe`. Installs for your Windows account only (no administrator rights), adds a Start menu entry, optional desktop shortcut and optional startup at sign-in, and can be removed from Windows Settings → Apps. Data is stored in `%LOCALAPPDATA%\PanoBox`. Upgrading keeps your data.
 - **Portable** — `PanoBox-<version>-win-x64.zip`. Extract it into a folder you control and run `PanoBox.exe`. Data is stored in a `Data` folder next to the app (or `%LOCALAPPDATA%\PanoBox` if that folder is not writable). Keep the documentation and `licenses` folder with the app.
