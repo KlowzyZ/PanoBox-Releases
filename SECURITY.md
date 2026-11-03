@@ -8,7 +8,7 @@ Do not attach real clipboard history, `Data`, database files, backups, access to
 
 ## Supported version and boundaries
 
-Use the latest stable release from [KlowzyZ/PanoBox-Releases](https://github.com/KlowzyZ/PanoBox-Releases/releases). Version 2.0.x is the current supported line. Earlier development builds should be replaced. There is no guaranteed response-time commitment.
+Use the latest stable release from the **Releases** tab of `KlowzyZ/PanoBox-Releases`. Version 2.0.x is the current supported line. Earlier development builds should be replaced. There is no guaranteed response-time commitment.
 
 PanoBox is a Windows desktop app that intentionally reads and writes the current user's clipboard, stores local history and can simulate a paste action. It is not a secret vault or a defense against malicious software running as the same user. Local history and text exports are not encrypted; backups are encrypted only when a backup password is set, and that protection depends on the password's strength. Password exclusions are heuristics and cannot promise that every secret is rejected. Backups are sensitive input and should come from a trusted source. Restore accepts only the expected file names inside a backup archive, enforces per-file and total size limits, verifies SHA-256 checksums before writing and never overwrites existing image files.
 
